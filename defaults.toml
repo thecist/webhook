@@ -1,0 +1,18 @@
+[notion_rss]
+cron = "0 * * * *"
+enabled = false
+
+[notion_rss.defaults]
+origin_name_title = "Origin Name"
+origin_url_title = "Link"
+origin_status_title = "Status"
+origin_status_subscribed = "Subscribed"
+view_name_title = "Name"
+view_description_title = "Description"
+view_status_title = "Read Status"
+view_pub_date_title = "Publication Date"
+view_id_title = "Id"
+view_source_title = "Source"
+view_hash_title = "Hash"
+view_href_title = "Permalink"
+view_status_not_read = "Not Read"
