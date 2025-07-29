@@ -1,0 +1,6 @@
+.env
+.venv*
+__pycache__
+configs.toml
+.vscode
+.thecist
