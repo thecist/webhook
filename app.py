@@ -16,7 +16,7 @@
 
 import os
 from fastapi import FastAPI
-from core.job_runner import router
+from core.job_runner import router as job_router
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -34,7 +34,7 @@ app = FastAPI(
   }
 )
 
-app.include_router(router)
+app.include_router(job_router)
 
 # health check
 @app.get("/")
