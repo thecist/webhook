@@ -1,0 +1,5 @@
+-r ../../requirements.txt
+feedparser
+notion-client
+html-to-markdown
+mistune
