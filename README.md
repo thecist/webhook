@@ -7,16 +7,15 @@ This project provides a flexible webhook and job runner system for background an
 - **Webhook API**: Trigger jobs via HTTP requests using FastAPI.
 - **CLI**: Run and manage jobs and configuration from the command line.
 - **CRON Scheduling**: Schedule jobs using cron expressions.
-- **Dynamic Configuration**: Update job settings via CLI or API.
+- **Dynamic Configuration**: Update job settings via CLI, API or TOML.
 - **Virtual Environments**: Isolated Python environments per job.
 
 ## Folder Structure
 
 - `app.py` — FastAPI server entrypoint.
 - `cli.py` — Command-line interface for job management.
-- `core/` — Core logic (config, cron, environment, job runner).
+- `core/` — Core logic (config, cron, environment, job runner...).
 - `jobs/` — Contains all job modules. See [Jobs](#jobs) for detail.
-- `.thecist/` — CI/CD artifacts and scripts.
 - `defaults.toml` — Default configuration.
 - `configs.toml` — User configuration.
 - `.env` / `.env.example` — Environment variables.
@@ -55,13 +54,16 @@ cp .env.example .env
 
 Edit `configs.toml` to enable jobs and set scheduling.
 
-### 3. Run the API Server
+## Interacting with WebHook
 
+### Using CLI
+
+Create `configs.toml` 
 ```sh
-python -m app
+python -m cli create-config
 ```
-
-### 4. Use the CLI
+`configs.toml` can be edited manually afterwards or with
+CLI/API
 
 Enable or disable jobs:
 ```sh
@@ -85,18 +87,22 @@ python -m jobs.<job_name>
 ```
 Update `__main__.py` for testing
 
-### 5. Schedule Jobs
+### Using API Server
+
+```sh
+python -m app
+```
+
+- Health Check: `GET /`
+- Run Job: `GET|POST|PUT|PATCH|DELETE| /run/{job_name}` (with optional payload)
+
+### Using CRON
 
 Set up cron jobs for enabled jobs:
 
 ```sh
-python [cli.py](http://_vscodecontentref_/7) setup-scheduler
+python -m cli.py setup-scheduler
 ```
-
-## API Usage
-
-- Health Check: `GET /`
-- Run Job: `GET|POST|PUT|PATCH|DELETE| /run/{job_name}` (with optional payload)
 
 ## Jobs
 
@@ -155,6 +161,3 @@ Each job should be independent, with its own config, environment, and documentat
 - API-based configuration updates
 - Github workflows integration
 - CLI payload support
-
----
-**Note:** `.thecist/` is an artifact of my young CI/CD pipeline, you can ignore it
