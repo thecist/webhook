@@ -26,6 +26,11 @@ def enable(job_name: str):
   typer.echo(f"Enabled job: {job_name}")
 
 @app.command()
+def create_config():
+  merge_defaults_into_config()
+  typer.echo(f"Created config file: {CONFIGS_PATH}")
+
+@app.command()
 def disable(job_name: str):
   _toggle_job(job_name, False)
   typer.echo(f"Disabled job: {job_name}")
