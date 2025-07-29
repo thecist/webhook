@@ -1,0 +1,8 @@
+pydantic
+python-dateutil
+python-dotenv
+tomli-w
+fastapi[standard]
+uvicorn[standard]
+typer[all]
+python-crontab
